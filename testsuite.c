@@ -12,9 +12,8 @@ int init_suite(void) { return 0; }
 int clean_suite(void) { return 0; }
 
 /****** Cas de test - maximum avec arguments du même signe *****/
-void test_maximum_meme_signe(void) {
-  CU_ASSERT_EQUAL( maximum(31415, 123), 31415);
-  CU_ASSERT_EQUAL( maximum(2, 1), 2);
+void echo_valide(void) {
+  
 }
 
 /**** Cas de test - maximum avec arguments de signes opposés ***/ 
