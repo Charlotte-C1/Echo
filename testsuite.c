@@ -5,29 +5,24 @@
 #include "math.h"
 #include <stdio.h>
 
+#include "nombre.h"
+#include <stdlib.h>
+#include <string.h>
+#include <arpa/inet.h>
+
 /** Montage de la fixation - appelé avant chaque cas de test. **/
 int init_suite(void) { return 0; }
 
 /* Démontage de la fixation - appelé après chaque cas de test. */
 int clean_suite(void) { return 0; }
 
-/****** Cas de test - maximum avec arguments du même signe *****/
+/****** Cas de test - nominal *****/
 void echo_valide(void) {
-  
+  CU_ASSERT_EQUAL(traiter_commande_wrapper(5,[./a.out,172.0.0.1,2000,message,4],
 }
 
-/**** Cas de test - maximum avec arguments de signes opposés ***/ 
-void test_maximum_signes_opposes(void) {
-  CU_ASSERT_EQUAL( maximum(-21, 21), 21);
-  CU_ASSERT_EQUAL( maximum(21, -21), 21);
-}
-
-/*** Cas de test - maximum avec arguments de valeurs égales ****/ 
-void test_maximum_egalite(void) {
-  CU_ASSERT_EQUAL( maximum(0, 0), 0);
-  CU_ASSERT_EQUAL( maximum(-100, -100), -100);
-  CU_ASSERT_EQUAL( maximum(1234, 1234), 1234);
-}
+void envoie_message_bien(void){
+	CU_ASSERT_EQUAL(envoyer_message("bonjour"),
 
 /******************* Lancement des tests ***********************/
 int main ( void )

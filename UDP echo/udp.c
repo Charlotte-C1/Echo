@@ -11,9 +11,14 @@
 
 /* Créer une socket */
 void creer_socket(char* adresseIP, int port, SOCK* sock) {
+	
 	sock->sockfd=socket(AF_INET, SOCK_DGRAM, 0) ;
-	int sock ;
-	sock = socket(AF_INET, SOCK_DGRAM, 0) ;
+	
+	struct sockaddr_in addr;
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons(2369);
+	inet_aton ("192.168.26.23", &addr.sin_addr);
+	
 	
 	if (sock == -1) {
 		printf(« Echec creation socket\n ») ;
