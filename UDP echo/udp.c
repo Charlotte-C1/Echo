@@ -5,20 +5,30 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
+#include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
 /* Créer une socket */
 void creer_socket(char* adresseIP, int port, SOCK* sock) {
+	sock->sockfd=socket(AF_INET, SOCK_DGRAM, 0) ;
+	int sock ;
+	sock = socket(AF_INET, SOCK_DGRAM, 0) ;
 	
-	/*A COMPLETER*/
+	if (sock == -1) {
+		printf(« Echec creation socket\n ») ;
+		exit(1) ;
+	}
 	traiter_erreur(__FUNCTION__);
 	/*A COMPLETER*/
+
 }
 
 /* Attacher une socket */
 void attacher_socket(SOCK* sock) {
-	/*A COMPLETER*/
+	
+	
+	
 	traiter_erreur(__FUNCTION__);
 }
 
@@ -29,7 +39,7 @@ void init_addr(SOCK* sock) {
 
 /* Dimensionner la file d'attente d'une socket */
 void dimensionner_file_attente_socket(int taille, SOCK* sock) {
-	/*A COMPLETER*/
+	listen(sock->sockfd, taill);
 	traiter_erreur(__FUNCTION__);
 }
 
