@@ -15,17 +15,17 @@ pipeline {
         }
         stage('Compilation des sources') {
             steps {
-                sh 'cd C && make build'
+                sh 'cd UDP && make echo'
             }
         }
         stage('Vérification dynamique') {
             steps {
-                sh 'cd C && make testsuite'
+                sh 'make testsuite'
             }
         }
         stage('Analyse statique') {
             steps {
-                sh 'cd C && make analyse'
+                sh 'make analyse'
             }
         }
     }
