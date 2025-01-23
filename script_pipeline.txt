@@ -20,12 +20,12 @@ pipeline {
         }
         stage('Vérification dynamique') {
             steps {
-                sh 'cd C && make testsuite'
+                sh 'make testsuite'
             }
         }
         stage('Analyse statique') {
             steps {
-                sh 'cd C && make analyse'
+                sh 'make analyse'
             }
         }
     }
