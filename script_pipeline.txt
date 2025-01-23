@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Compilation des sources') {
             steps {
-                sh 'cd C && make build'
+                sh 'make echo'
             }
         }
         stage('Vérification dynamique') {
