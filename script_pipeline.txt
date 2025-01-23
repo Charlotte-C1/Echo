@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Compilation des sources') {
             steps {
-                sh 'make echo'
+                sh 'cd UDP && make echo'
             }
         }
         stage('Vérification dynamique') {
