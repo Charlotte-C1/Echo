@@ -1,12 +1,15 @@
 #include "udp.h"
 #include "erreur.h"
 #include "nombre.h"
+#include "udp.c"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <string.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
 
 int traiter_commande_wrapper(int argc, char ** argv){
 	traiter_commande(argc, argv[0], "<adresse IP> <port> <message> <nb occurences>\nmauvais nombre d'arguments");
