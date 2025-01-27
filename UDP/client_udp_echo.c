@@ -18,7 +18,7 @@ int traiter_commande_wrapper(int argc, char ** argv){
 	traiter_commande(est_un_entier_positif(argv[4]), argv[0], "<adresse IP> <port> <message> <nb occurences>\n<nb occurences> est un entier positif");
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv) {
 	traiter_commande_wrapper(argc ,argv);
 	
 	char* client_message = argv[3];
