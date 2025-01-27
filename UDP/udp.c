@@ -48,7 +48,7 @@ void dimensionner_file_attente_socket(int taille, SOCK* sock) {
 
 /* Recevoir un message */
 void recevoir_message(SOCK* dst, char * buffer) {
-	recvfrom(&dst, buffer, sizeof(buffer), 0,(struct sockaddr*)&dst->adresse,sizeof(dst->adresse));
+	recvfrom(*dst, buffer, sizeof(buffer), 0,(struct sockaddr*)&dst->adresse,sizeof(dst->adresse));
 	traiter_erreur(__FUNCTION__);
 }
 
