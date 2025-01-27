@@ -18,9 +18,9 @@ int traiter_commande_wrapper(int argc, char ** argv){
 int main(int argc, char** argv) {
 	traiter_commande_wrapper(argc ,argv);
 	
-	char* message = 
+	char* client_message = argv[3];
 
-	gets(client_message);
+	getw(client_message);
     
     // Send the message to server:
     if(sendto(socket_desc, client_message, strlen(client_message), 0,
