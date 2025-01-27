@@ -30,7 +30,7 @@ void creer_socket(char* adresseIP, int port, SOCK* sock) {
 /* Attacher une socket */
 void attacher_socket(SOCK* sock) {
 	
-	bind(sock->sockfd,(struct sockaddr *)&sock->adresse, sizeof (adresse));
+	bind(sock->sockfd,(struct sockaddr *)&sock->adresse, sizeof (sock->adresse));
 	
 	traiter_erreur(__FUNCTION__);
 }
