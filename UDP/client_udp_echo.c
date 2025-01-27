@@ -16,7 +16,6 @@ int traiter_commande_wrapper(int argc, char ** argv){
 }
 
 int main(int argc, char** argv) {
-<<<<<<< HEAD
 	traiter_commande_wrapper(argc ,argv);
 	
 	char* message = 
@@ -35,13 +34,5 @@ int main(int argc, char** argv) {
         printf("Error while receiving server's msg\n");
         return -1;
     }
-=======
-	traiter_commande_wrapper(argc ,argv){
-		exit(1);
-	}
-
-	
-
->>>>>>> e69f1ee32df5a9f113b035f679a74e71e5807dde
 	exit(0);
 }
