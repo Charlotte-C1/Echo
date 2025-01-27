@@ -30,7 +30,7 @@ void creer_socket(char* adresseIP, int port, SOCK* sock) {
 /* Attacher une socket */
 void attacher_socket(SOCK* sock) {
 	
-	bind(sock->sockfd,(struct sock->adresse *)&sock->adresse, sizeof (adresse);
+	bind(sock->sockfd,(struct sockaddr *)&sock->adresse, sizeof (adresse));
 	
 	traiter_erreur(__FUNCTION__);
 }
@@ -48,13 +48,13 @@ void dimensionner_file_attente_socket(int taille, SOCK* sock) {
 
 /* Recevoir un message */
 void recevoir_message(SOCK* dst, char * buffer) {
-	recvfrom(*dst, buffer, sizeof(buffer), 0,(struct sockaddr*)&dst->adresse,sizeof(dst->adresse));
+	recvfrom(*dst, buffer, sizeof(buffer), 0,(struct sockaddr *)&dst->adresse,sizeof(dst->adresse));
 	traiter_erreur(__FUNCTION__);
 }
 
 /* Émettre un message */
 void envoyer_message(SOCK* dst, char * message) {
-	sendto(dst->sockfd, message, strlen(message), 0,(struct sockaddr*)&dst->adresse, sizeof(dst->adresse));
+	sendto(dst->sockfd, message, strlen(message), 0,(struct sockaddr *)&dst->adresse, sizeof(dst->adresse));
 	traiter_erreur(__FUNCTION__);
 }
 /* Fermer la connexion */
