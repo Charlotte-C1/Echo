@@ -17,7 +17,22 @@ int traiter_commande_wrapper(int argc, char ** argv){
 
 int main(int argc, char** argv) {
 	traiter_commande_wrapper(argc ,argv);
+	
+	char* message = 
 
-
+	gets(client_message);
+    
+    // Send the message to server:
+    if(sendto(socket_desc, client_message, strlen(client_message), 0,
+         (struct sockaddr*)&server_addr, server_struct_length) < 0){
+        printf("Unable to send message\n");
+        return -1;
+    }
+    
+    if(recvfrom(socket_desc, server_message, sizeof(server_message), 0,
+         (struct sockaddr*)&server_addr, &server_struct_length) < 0){
+        printf("Error while receiving server's msg\n");
+        return -1;
+    }
 	exit(0);
 }
