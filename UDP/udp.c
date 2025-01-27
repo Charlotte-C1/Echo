@@ -11,6 +11,7 @@
 
 /* Créer une socket */
 void creer_socket(char* adresseIP, int port, SOCK* sock) {
+<<<<<<< HEAD
 	sock->sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 	traiter_erreur(__FUNCTION__);
 
@@ -20,6 +21,19 @@ void creer_socket(char* adresseIP, int port, SOCK* sock) {
 	traiter_erreur(__FUNCTION__);
 
 	/*A COMPLETER*/
+=======
+	
+	sock->sockfd=socket(AF_INET, SOCK_DGRAM, 0) ;
+	
+	struct sockaddr_in addr;
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons(2369);
+	inet_aton ("10.0.20.11", &addr.sin_addr);
+	
+	traiter_erreur(__FUNCTION__);
+
+	
+>>>>>>> c364665629ad6ff589ea40e864392716e7d41948
 
 	if (strcmp(adresseIP, "") != 0)
 		sock->adresse.sin_addr.s_addr = inet_addr(adresseIP);
