@@ -12,7 +12,10 @@ echo: client_tcp_echo.c serveur_tcp_echo.c $(EXE_DIR) $(OBJS)
 	$(COMPILER) erreur.o tcp.o nombre.o serveur_tcp_$@.c -o $(EXE_DIR)/$@/TCP/serveur_tcp_$@
 	chmod -R u+x $(EXE_DIR)/$@/TCP
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e69f1ee32df5a9f113b035f679a74e71e5807dde
 tcp.o: tcp.c tcp.h
 	$(COMPILER) -c tcp.c -o tcp.o
 
