@@ -1,45 +1,76 @@
 #include "udp.h"
 #include "erreur.h"
 #include "nombre.h"
-#include "udp.c"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <string.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-int traiter_commande_wrapper(int argc, char * argv){
-	traiter_commande(argc,convertir_nombre( &argv[0]), "<adresse IP> <port> <message> <nb occurences>\nmauvais nombre d'arguments");
-	traiter_commande(est_une_adresse_IP(argv[1]), argv[0], "<adresse IP> <port> <message> <nb occurences>\n<adresse IP> est une adresse IP au format décimal pointé");
-	traiter_commande(est_un_port_non_reserve(argv[2]), argv[0], "<adresse IP> <port> <message> <nb occurences>\n<port> est un port non réservé");
-	traiter_commande(est_un_entier_positif(argv[4]), argv[0], "<adresse IP> <port> <message> <nb occurences>\n<nb occurences> est un entier positif");
+int traiter_commande_wrapper(int argc, char **argv) {
+    if (argc != 5) {
+        traiter_commande(0, argv[0], "<adresse IP> <port> <message> <nb occurences>\nmauvais nombre d'arguments");
+        return -1;
+    }
+    if (!est_une_adresse_IP(argv[1])) {
+        traiter_commande(0, argv[0], "<adresse IP> <port> <message> <nb occurences>\n<adresse IP> est une adresse IP au format décimal pointé");
+        return -1;
+    }
+    if (!est_un_port_non_reserve(argv[2])) {
+        traiter_commande(0, argv[0], "<adresse IP> <port> <message> <nb occurences>\n<port> est un port non réservé");
+        return -1;
+    }
+    if (!est_un_entier_positif(argv[4])) {
+        traiter_commande(0, argv[0], "<adresse IP> <port> <message> <nb occurences>\n<nb occurences> est un entier positif");
+        return -1;
+    }
+    return 0;
 }
 
-int main(int argc, char* argv) {
-	traiter_commande_wrapper(argc ,*argv);
-	char adresse = argv[1];
-	int occurence = argv[4];
-	int port = argv[2];
-	SOCK client;
+int main(int argc, char **argv) {
+    if (traiter_commande_wrapper(argc, argv) != 0) {
+        return -1;
+    }
 
-	char* client_message = &argv[3];
+    int socket_desc;
+    struct sockaddr_in server_addr;
+    socklen_t server_struct_length = sizeof(server_addr);
+    char server_message[2000];
 
-	getw(client_message);
-    
-    // Send the message to server:
-    if(sendto(socket_desc, client_message, strlen(client_message), 0,
-         (struct sockaddr*)&server_addr, server_struct_length) < 0){
+    // Create socket
+    socket_desc = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    if (socket_desc < 0) {
+        printf("Unable to create socket\n");
+        return -1;
+    }
+
+    // Set server address
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(atoi(argv[2]));
+    server_addr.sin_addr.s_addr = inet_addr(argv[1]);
+
+    char *client_message = argv[3];
+
+    // Send the message to server
+    if (sendto(socket_desc, client_message, strlen(client_message), 0,
+               (struct sockaddr *)&server_addr, server_struct_length) < 0) {
         printf("Unable to send message\n");
         return -1;
     }
-    
-    if(recvfrom(socket_desc, server_message, sizeof(server_message), 0,
-         (struct sockaddr*)&server_addr, &server_struct_length) < 0){
+
+    // Receive the message from server
+    if (recvfrom(socket_desc, server_message, sizeof(server_message), 0,
+                 (struct sockaddr *)&server_addr, &server_struct_length) < 0) {
         printf("Error while receiving server's msg\n");
         return -1;
     }
-	exit(0);
+
+    printf("Server response: %s\n", server_message);
+
+    // Close the socket
+    close(socket_desc);
+
+    return 0;
 }
