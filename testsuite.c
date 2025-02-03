@@ -21,7 +21,7 @@ int clean_suite(void) { return 0; }
 <<<<<<< HEAD
 /****** Cas de test - nominal *****/
 void traiter_commande_valide(void) {
-  CU_ASSERT_EQUAL(traiter_commande_wrapper(5,[./a.out,172.0.0.1,2000,message,4],0);
+  CU_ASSERT_EQUAL(traiter_commande_wrapper(5,[./a.out,172.0.0.1,2000,message,4] == 0);
 }
 
 void envoie_message_bien(void){
