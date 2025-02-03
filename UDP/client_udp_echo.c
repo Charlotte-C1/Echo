@@ -34,28 +34,24 @@ int main(int argc, char** argv) {
     if (traiter_commande_wrapper(argc,argv) !=0) {
         return -1;
     }
-    
-	traiter_commande_wrapper(argc ,*argv);
-	char adresse = argv[1];
+	char adresse = &argv[1];
 	int occurence = argv[4];
-	int port = argv[2];
-	SOCK client;
+	int port = convertir_nombre(argv[2]);
+	SOCK serveur;
+	
+  	char *client_message = argv[3];
 
-	char* client_message = &argv[3];
+	creer_socket();
 
-	getw(client_message);
-    
-    // Send the message to server:
-    if(sendto(socket_desc, client_message, strlen(client_message), 0,
-         (struct sockaddr*)&server_addr, server_struct_length) < 0){
-        printf("Unable to send message\n");
-        return -1;
-    }
+	envoyer_message (*serveur, char * message);
+    	recevoir_message(*serveur, char * buffer);
     
     if(recvfrom(socket_desc, server_message, sizeof(server_message), 0,
          (struct sockaddr*)&server_addr, &server_struct_length) < 0){
         printf("Error while receiving server's msg\n");
         return -1;
     }
+	
+	fermer_connexion(client);
 	exit(0);
 }
