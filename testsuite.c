@@ -39,14 +39,10 @@ void test_ligne_commande_OK(void) {
 void test_ligne_commande_erreur(void) {
   /* Mauvais nombre d'argument                                 */
   /* La fonction system() exécute une commande depuis le shell */
-  CU_ASSERT(system("./multiplication") != 0);
-  CU_ASSERT(system("./multiplication 1") != 0);
-  CU_ASSERT(system("./multiplication 1 2 3") != 0);
+  CU_ASSERT(system("./client_udp_echo.c") != 0);
+  CU_ASSERT(system("./client_udp_echo.c" 1 2 3) != 0);
+  CU_ASSERT(system("./client_udp_echo.c" 12 1) != 0);
 
-  /* Les arguments ne sont pas des nombres                     */
-  CU_ASSERT(system("./multiplication abc 123") != 0);
-  CU_ASSERT(system("./multiplication 123 abc") != 0);
-  CU_ASSERT(system("./multiplication abc abc") != 0);
 }
 >>>>>>> e69f1ee32df5a9f113b035f679a74e71e5807dde
 
