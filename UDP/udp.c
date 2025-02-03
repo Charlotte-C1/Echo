@@ -8,7 +8,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-
+/*Commentaire*/
 /* Créer une socket */
 void creer_socket(char* adresseIP, int port, SOCK* sock) {
 	sock->sockfd = socket(AF_INET, SOCK_DGRAM, 0);
