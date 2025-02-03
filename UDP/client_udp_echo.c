@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
     printf("Server response: %s\n", server_message);
 
     // Close the socket
-    close(socket_desc);
+    pclose(socket_desc);
 
     return 0;
 }
