@@ -25,7 +25,7 @@ int main(int argc, char* argv) {
 	port = argv[2];
 	SOCK client
 
-	char* client_message = argv[3];
+	char* client_message = &argv[3];
 
 	getw(client_message);
     
