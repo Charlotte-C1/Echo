@@ -24,7 +24,7 @@ int main(int argc, char* argv) {
 	occurence = argv[4];
 	port = argv[2];
 	SOCK client
-	creer_socket(adresse,port,
+
 	char* client_message = argv[3];
 
 	getw(client_message);
