@@ -29,48 +29,33 @@ int traiter_commande_wrapper(int argc, char **argv) {
     return 0;
 }
 
-int main(int argc, char **argv) {
-    if (traiter_commande_wrapper(argc, argv) != 0) {
+
+int main(int argc, char** argv) {
+    if (traiter_commande_wrapper(argc,argv) !=0) {
         return -1;
     }
+    
+	traiter_commande_wrapper(argc ,*argv);
+	char adresse = argv[1];
+	int occurence = argv[4];
+	int port = argv[2];
+	SOCK client;
 
-    int socket_desc;
-    struct sockaddr_in server_addr;
-    socklen_t server_struct_length = sizeof(server_addr);
-    char server_message[2000];
+	char* client_message = &argv[3];
 
-    // Create socket
-    socket_desc = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-    if (socket_desc < 0) {
-        printf("Unable to create socket\n");
-        return -1;
-    }
-
-    // Set server address
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(atoi(argv[2]));
-    server_addr.sin_addr.s_addr = inet_addr(argv[1]);
-
-    char *client_message = argv[3];
-
-    // Send the message to server
-    if (sendto(socket_desc, client_message, strlen(client_message), 0,
-               (struct sockaddr *)&server_addr, server_struct_length) < 0) {
+	getw(client_message);
+    
+    // Send the message to server:
+    if(sendto(socket_desc, client_message, strlen(client_message), 0,
+         (struct sockaddr*)&server_addr, server_struct_length) < 0){
         printf("Unable to send message\n");
         return -1;
     }
-
-    // Receive the message from server
-    if (recvfrom(socket_desc, server_message, sizeof(server_message), 0,
-                 (struct sockaddr *)&server_addr, &server_struct_length) < 0) {
+    
+    if(recvfrom(socket_desc, server_message, sizeof(server_message), 0,
+         (struct sockaddr*)&server_addr, &server_struct_length) < 0){
         printf("Error while receiving server's msg\n");
         return -1;
     }
-
-    printf("Server response: %s\n", server_message);
-
-    // Close the socket
-    pclose(socket_desc);
-
-    return 0;
+	exit(0);
 }
