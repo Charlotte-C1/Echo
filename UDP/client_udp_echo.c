@@ -11,7 +11,7 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-int traiter_commande_wrapper(int argc, char ** argv){
+int traiter_commande_wrapper(int argc, char * argv){
 	traiter_commande(argc, argv[0], "<adresse IP> <port> <message> <nb occurences>\nmauvais nombre d'arguments");
 	traiter_commande(est_une_adresse_IP(argv[1]), argv[0], "<adresse IP> <port> <message> <nb occurences>\n<adresse IP> est une adresse IP au format décimal pointé");
 	traiter_commande(est_un_port_non_reserve(argv[2]), argv[0], "<adresse IP> <port> <message> <nb occurences>\n<port> est un port non réservé");
@@ -20,7 +20,7 @@ int traiter_commande_wrapper(int argc, char ** argv){
 
 int main(int argc, char* argv) {
 	traiter_commande_wrapper(argc ,*argv);
-	char * adresse = argv[1];
+	char adresse = argv[1];
 	int occurence = argv[4];
 	int port = argv[2];
 	SOCK client;
