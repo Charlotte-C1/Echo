@@ -19,8 +19,12 @@ int traiter_commande_wrapper(int argc, char ** argv){
 }
 
 int main(int argc, char* argv) {
-	traiter_commande_wrapper(argc ,*argv);
-	
+	traiter_commande_wrapper(argc ,**argv);
+	adresse = argv[1];
+	occurence = argv[4];
+	port = argv[2];
+	SOCK client
+	creer_socket(adresse,port,
 	char* client_message = argv[3];
 
 	getw(client_message);
