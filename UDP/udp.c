@@ -20,7 +20,7 @@ void creer_socket(char* adresseIP, int port, SOCK* sock) {
 	traiter_erreur(__FUNCTION__);
 
 	/*A COMPLETER*/
-	sock.sin_family = AF_INET;
+	sock->sin_family = AF_INET;
     	server_addr.sin_port = htons(2000);
     	server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
