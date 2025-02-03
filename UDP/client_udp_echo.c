@@ -34,8 +34,8 @@ int main(int argc, char** argv) {
     if (traiter_commande_wrapper(argc,argv) !=0) {
         return -1;
     }
-	char adresse = &argv[1];
-	int occurence = argv[4];
+	char * adresse = (char *)argv[1];
+	int occurence = (int)argv[4];
 	int port = convertir_nombre(argv[2]);
 	SOCK serveur;
 	
