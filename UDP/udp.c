@@ -1,6 +1,6 @@
 #include "erreur.h"
 #include "udp.h"
-#include "numero.h"
+#include "nombre.h"
 
 #include <stdio.h>
 #include <unistd.h>
