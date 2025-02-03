@@ -1,5 +1,6 @@
 #include "erreur.h"
 #include "udp.h"
+#include "nombre.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -19,7 +20,9 @@ void creer_socket(char* adresseIP, int port, SOCK* sock) {
     	setsockopt(sock->sockfd, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(optval));
 	traiter_erreur(__FUNCTION__);
 
-	/*A COMPLETER*/
+	sock->adresse.sin_family = AF_INET;
+  	sock->adresse.sin_port = htons(convertir_nombre(port));
+	sock->adresse.sin_addr.s_addr = inet_addr(adresseIP);
 
 	if (strcmp(adresseIP, "") != 0)
 		sock->adresse.sin_addr.s_addr = inet_addr(adresseIP);
