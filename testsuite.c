@@ -20,12 +20,12 @@ int clean_suite(void) { return 0; }
 
 <<<<<<< HEAD
 /****** Cas de test - nominal *****/
-void echo_valide(void) {
-  CU_ASSERT_EQUAL(traiter_commande_wrapper(5,[./a.out,172.0.0.1,2000,message,4],
+void traiter_commande_valide(void) {
+  CU_ASSERT_EQUAL(traiter_commande_wrapper(5,[./a.out,172.0.0.1,2000,message,4],0);
 }
 
 void envoie_message_bien(void){
-	CU_ASSERT_EQUAL(envoyer_message("bonjour"),
+	CU_ASSERT_EQUAL(envoyer_message("bonjour"),"bonjour");
 =======
 /******* Cas de test - lancement du client - cas nominal *******/
 /* Le binaire retourne 0 en cas de succès - exit(0)            */
